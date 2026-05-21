@@ -24,7 +24,7 @@ else:
     firebase_ok = True
 
 st.set_page_config(
-    page_title="AI Twin - Premium",
+    page_title="AI Twin - Sahan N Bandara",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -201,20 +201,6 @@ def get_sessions() -> List[str]:
         return []
 
 
-def delete_session(session_id: str) -> bool:
-    if not firebase_ok:
-        return False
-    try:
-        messages = db.collection("chats").document(session_id)\
-                     .collection("messages").stream()
-        for msg in messages:
-            msg.reference.delete()
-        db.collection("chats").document(session_id).delete()
-        return True
-    except Exception:
-        return False
-
-
 def export_chat_txt(messages: List[dict]) -> str:
     """Export chat as text file"""
     text = f"AI Twin Chat Export\n"
@@ -267,6 +253,7 @@ with col1:
 
 with col2:
     st.title("AI Twin Premium")
+    st.markdown("### by **Sahan N Bandara** 👨‍💻")
     st.caption("Advanced chatbot with Groq API & Firebase")
 
 with col3:
@@ -451,3 +438,6 @@ with col2:
     st.caption("🔥 Firebase Firestore")
 with col3:
     st.caption("✨ Streamlit")
+
+st.caption("---")
+st.caption("**🎓 Developed by: Sahan N Bandara** | University of Ruhuna, Computer Engineering")
